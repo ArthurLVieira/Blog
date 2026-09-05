@@ -12,9 +12,16 @@
   "editor.tabSize": 2,
   "explorer.compactFolders": false,
 
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.runInTerminal": true,
+  "code-runner.ignoreSelection": true,
+
   // 🛠 Formatação e Lint
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "code-runner.executorMap": {
+    "typescript": "clear; npx tsx"
+  },
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
