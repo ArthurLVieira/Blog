@@ -1,6 +1,5 @@
 import { postRespository } from '@/repositories/post';
-import PostCoverImage from '../PostCoverImage';
-import PostContet from '../PostContent';
+import Post from '../Post';
 
 export async function PostList() {
   const posts = await postRespository.findAll();
@@ -10,28 +9,17 @@ export async function PostList() {
       {posts.map(post => {
         const postLink = `/post/${post.slug}`;
         return (
-          <div className='flex flex-col gap-4 group' key={post.id}>
-            <PostCoverImage
-              linkProps={{
-                href: postLink,
-              }}
-              imageProps={{
-                width: 1200,
-                height: 720,
-                src: post.coverImageUrl,
-                alt: post.title,
-              }}
-            />
-
-            <PostContet
-              heading={{ as: 'h2', href: postLink }}
-              postModel={{
-                createdAt: post.createdAt,
-                title: post.title,
-                excerpt: post.excerpt,
-              }}
-            />
-          </div>
+          <Post
+            postLink={postLink}
+            postModel={{
+              id: post.id,
+              coverImageUrl: post.coverImageUrl,
+              createdAt: post.createdAt,
+              excerpt: post.excerpt,
+              title: post.title,
+            }}
+            key={post.id}
+          />
         );
       })}
     </div>

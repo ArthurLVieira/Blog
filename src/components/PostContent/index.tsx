@@ -2,6 +2,7 @@ import { PostModel } from '@/models/post/post-model';
 import clsx from 'clsx';
 import React from 'react';
 import Heading from '../Header';
+import { formatDateTime, formatRelativeDate } from '@/helpers/format-datetime';
 
 interface PostContetProps {
   postModel: Pick<PostModel, 'createdAt' | 'title' | 'excerpt'>;
@@ -21,8 +22,9 @@ const PostContet: React.FC<PostContetProps> = ({ postModel, heading }) => {
           'block',
         )}
         dateTime={createdAt}
+        title={formatRelativeDate(createdAt)}
       >
-        {createdAt}
+        {formatDateTime(createdAt)}
       </time>
       <Heading {...heading}>{title}</Heading>
 
