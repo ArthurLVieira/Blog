@@ -2,18 +2,26 @@ import { PostModel } from '@/models/post/post-model';
 import PostContet from '../PostContent';
 import PostCoverImage from '../PostCoverImage';
 import { Key } from 'react';
+import Heading from '../Header';
 
 interface PostProps {
   postLink: string;
   postModel: Pick<
     PostModel,
-    'id' | 'coverImageUrl' | 'title' | 'createdAt' | 'excerpt'
+    'coverImageUrl' | 'title' | 'createdAt' | 'excerpt'
   >;
+  postContentHeading: React.ComponentProps<typeof Heading>;
+
   key?: Key | null | undefined;
 }
 
-const Post: React.FC<PostProps> = ({ postLink, postModel, key }) => {
-  const { id, coverImageUrl, title, createdAt, excerpt } = postModel;
+const Post: React.FC<PostProps> = ({
+  postLink,
+  postModel,
+  postContentHeading,
+  key,
+}) => {
+  const { coverImageUrl, title, createdAt, excerpt } = postModel;
   return (
     <div className='flex flex-col gap-4 group' key={key}>
       <PostCoverImage
@@ -29,7 +37,7 @@ const Post: React.FC<PostProps> = ({ postLink, postModel, key }) => {
       />
 
       <PostContet
-        heading={{ as: 'h2', href: postLink }}
+        heading={{ as: postContentHeading.as, href: postLink }}
         postModel={{
           createdAt: createdAt,
           title: title,

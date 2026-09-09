@@ -12,12 +12,12 @@ export async function PostList() {
           <Post
             postLink={postLink}
             postModel={{
-              id: post.id,
               coverImageUrl: post.coverImageUrl,
               createdAt: post.createdAt,
               excerpt: post.excerpt,
               title: post.title,
             }}
+            postContentHeading={{ as: 'h2' }}
             key={post.id}
           />
         );

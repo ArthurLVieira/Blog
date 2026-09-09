@@ -1,8 +1,26 @@
 import clsx from 'clsx';
 import PostCoverImage from '../PostCoverImage';
 import Heading from '../Header';
+import { PostModel } from '@/models/post/post-model';
+import React, { Key } from 'react';
 
-const PostFeatured: React.FC = () => {
+interface PostFeaturedProps {
+  postLink: string;
+  postModel: Pick<
+    PostModel,
+    'coverImageUrl' | 'title' | 'createdAt' | 'excerpt'
+  >;
+  postContentHeading: React.ComponentProps<typeof Heading>;
+
+  key?: Key | null | undefined;
+}
+
+const PostFeatured: React.FC<PostFeaturedProps> = ({
+  postLink,
+  postModel,
+  postContentHeading,
+  key,
+}): React.ReactNode => {
   return (
     <section
       className={clsx(

@@ -2,6 +2,7 @@ import { PostModel } from '@/models/post/post-model';
 import { PostRepository } from './post-repository';
 import { resolve } from 'path';
 import { readFile } from 'fs/promises';
+import { cache } from 'react';
 
 const ROOT_DIR = process.cwd();
 const JSON_POSTS_FILE_PATH = resolve(
@@ -14,40 +15,40 @@ const JSON_POSTS_FILE_PATH = resolve(
 const SIMULATE_WAIT_IN_MS = 0;
 
 export class JsonPostRepository implements PostRepository {
-  private async simulateWait() {
+  private simulateWait = cache(async () => {
     if (SIMULATE_WAIT_IN_MS <= 0) return;
 
     await new Promise(resolve => setTimeout(resolve, SIMULATE_WAIT_IN_MS));
-  }
+  });
 
-  private async readFromDisk(): Promise<PostModel[]> {
+  private readFromDisk = cache(async (): Promise<PostModel[]> => {
     const jsonContent = await readFile(JSON_POSTS_FILE_PATH, 'utf-8');
     const parsedJson = JSON.parse(jsonContent);
     const { posts } = parsedJson;
     return posts;
-  }
+  });
 
-  async findAll(): Promise<PostModel[]> {
+  findAll = cache(async (): Promise<PostModel[]> => {
     await this.simulateWait();
 
     const posts = await this.readFromDisk();
     return posts;
-  }
+  });
 
   async findById(id: string): Promise<PostModel> {
     const posts = await this.findAll();
     const post = posts.filter(post => post.id === id);
     if (!post) throw new Error(`ID: ${id}, not found.`);
 
-    return post;
+    return post[0];
   }
 
-  async findByPublished(publised: boolean): Promise<PostModel[]> {
+  findByPublished = cache(async (publised: boolean): Promise<PostModel[]> => {
     const posts = await this.findAll();
     const postsPublished = posts.filter(posts => posts.published === publised);
 
     if (!postsPublished) throw new Error(`Published: ${publised}, not found.`);
 
     return postsPublished;
-  }
+  });
 }
