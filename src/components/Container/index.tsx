@@ -1,4 +1,4 @@
-import FormLayout from '@/layout/FormLayout';
+import FormLayout from '@/layouts/FormLayout';
 import clsx from 'clsx';
 import React from 'react';
 
@@ -14,7 +14,7 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
         'bg-slate-100 dark:bg-slate-900',
         'min-h-screen',
         'font-sans',
-        'text-2xl',
+        'font-medium',
       )}
     >
       <div className={clsx('max-w-screen-lg', 'mx-auto', 'px-8')}>

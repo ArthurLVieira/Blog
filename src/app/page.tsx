@@ -7,7 +7,12 @@ import { Suspense } from 'react';
 export default async function HomePage() {
   return (
     <Container>
-      <PostFeatured />
+      <PostFeatured
+        postContentHeading={{ as: 'h1' }}
+        postLink='#'
+        postModel={{ coverImageUrl: '', createdAt: '', excerpt: '', title: '' }}
+        key={''}
+      />
       <Suspense fallback={<SpinLoader />}>
         <PostList />
       </Suspense>

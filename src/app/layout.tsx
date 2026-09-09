@@ -3,7 +3,10 @@ import './globals.css';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'The blog - este é um blog com next.js',
+  title: {
+    default: 'The Blog',
+    template: '%s | the Blog',
+  },
   description: 'Desecrção da página',
 };
 

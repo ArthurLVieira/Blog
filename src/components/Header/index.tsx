@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import MenuLink from '../MenuLink';
+import Link from '../MenuLink';
 import React from 'react';
 
 interface HeadingProps {
@@ -24,12 +24,12 @@ const Heading: React.FC<HeadingProps> = ({
     <>
       <header>
         <Tag className={clsx(headingClassesMap[Tag], commonClasses)}>
-          <MenuLink
+          <Link
             className='group-hover:text-slate-600 dark:group-hover:text-slate-300 transition'
             href={href}
           >
             {children}
-          </MenuLink>
+          </Link>
         </Tag>
       </header>
     </>

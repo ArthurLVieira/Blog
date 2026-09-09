@@ -1,10 +1,10 @@
 import React from 'react';
-import MenuLink from '../MenuLink';
+import Link from '../MenuLink';
 import Image from 'next/image';
 import clsx from 'clsx';
 
 interface PostCoverImageProps {
-  linkProps: React.ComponentProps<typeof MenuLink>;
+  linkProps: React.ComponentProps<typeof Link>;
   imageProps: React.ComponentProps<typeof Image>;
 }
 
@@ -13,7 +13,7 @@ const PostCoverImage: React.FC<PostCoverImageProps> = ({
   linkProps,
 }) => {
   return (
-    <MenuLink
+    <Link
       {...linkProps}
       href={linkProps.href}
       className={clsx(
@@ -37,7 +37,7 @@ const PostCoverImage: React.FC<PostCoverImageProps> = ({
         )}
         alt={imageProps.alt}
       />
-    </MenuLink>
+    </Link>
   );
 };
 

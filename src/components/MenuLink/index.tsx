@@ -1,12 +1,12 @@
-import Link from 'next/link';
+import LinkNext from 'next/link';
 import React, { ComponentProps } from 'react';
 
-interface MenuLinkProps extends ComponentProps<typeof Link> {
+interface LinkProps extends ComponentProps<typeof LinkNext> {
   children?: React.ReactNode | undefined;
 }
 
-const MenuLink: React.FC<MenuLinkProps> = ({ children, ...props }) => {
-  return <Link {...props}>{children}</Link>;
+const Link: React.FC<LinkProps> = ({ children, ...props }) => {
+  return <LinkNext {...props}>{children}</LinkNext>;
 };
 
-export default MenuLink;
+export default Link;
