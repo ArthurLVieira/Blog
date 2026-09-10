@@ -15,25 +15,25 @@ const JSON_POSTS_FILE_PATH = resolve(
 const SIMULATE_WAIT_IN_MS = 0;
 
 export class JsonPostRepository implements PostRepository {
-  private simulateWait = cache(async () => {
+  private simulateWait = async () => {
     if (SIMULATE_WAIT_IN_MS <= 0) return;
 
     await new Promise(resolve => setTimeout(resolve, SIMULATE_WAIT_IN_MS));
-  });
+  };
 
-  private readFromDisk = cache(async (): Promise<PostModel[]> => {
+  private readFromDisk = async (): Promise<PostModel[]> => {
     const jsonContent = await readFile(JSON_POSTS_FILE_PATH, 'utf-8');
     const parsedJson = JSON.parse(jsonContent);
     const { posts } = parsedJson;
     return posts;
-  });
+  };
 
-  findAll = cache(async (): Promise<PostModel[]> => {
+  findAll = async (): Promise<PostModel[]> => {
     await this.simulateWait();
 
     const posts = await this.readFromDisk();
     return posts;
-  });
+  };
 
   async findById(id: string): Promise<PostModel> {
     const posts = await this.findAll();
@@ -43,12 +43,21 @@ export class JsonPostRepository implements PostRepository {
     return post[0];
   }
 
-  findByPublished = cache(async (publised: boolean): Promise<PostModel[]> => {
+  findByPublished = async (publised: boolean): Promise<PostModel[]> => {
     const posts = await this.findAll();
     const postsPublished = posts.filter(posts => posts.published === publised);
 
     if (!postsPublished) throw new Error(`Published: ${publised}, not found.`);
 
     return postsPublished;
-  });
+  };
+
+  findBySlug = async (slug: string): Promise<PostModel> => {
+    const posts = await this.findAll();
+    const post = posts.filter(post => post.slug == slug);
+
+    if (!post) throw new Error(`Slug: ${slug}, not found.`);
+
+    return post[0];
+  };
 }

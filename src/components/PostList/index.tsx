@@ -1,8 +1,9 @@
 import { postRespository } from '@/repositories/post';
 import Post from '../Post';
+import { findAll } from '@/lib/post/quries';
 
 export async function PostList() {
-  const posts = await postRespository.findAll();
+  const posts = await findAll();
 
   return (
     <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
