@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Heading from '../Header';
 import PostDate from '../PostDate';
 import clsx from 'clsx';
+import SafeMarkdown from '../SafeMarkdown';
 
 interface SinglePageProps {
   slug: string;
@@ -34,7 +35,7 @@ const SinglePage: React.FC<SinglePageProps> = async ({ slug }) => {
         {post.excerpt}
       </p>
 
-      <div>{post.content}</div>
+      <SafeMarkdown markdown={post.content} />
     </article>
   );
 };

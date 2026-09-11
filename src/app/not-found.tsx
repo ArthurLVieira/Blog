@@ -1,10 +1,17 @@
 import Container from '@/components/Container';
+import ErrorMessage from '@/components/ErrorMessage';
 import clsx from 'clsx';
 import React from 'react';
 
 const NotFoundPage: React.FC = () => {
   return (
     <>
+      <ErrorMessage
+        status='404'
+        title='404 - Not Fount'
+        content='Erro 404 - A página que você está tentando acessar não existe
+              neste site.'
+      />
       <title>404 - Not Fount</title>
       <Container>
         <div
