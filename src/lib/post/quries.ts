@@ -11,7 +11,9 @@ export const findPostById = cache(async (id: string): Promise<PostModel> => {
 
 export const findPostBySlugCached = cache(
   async (slug: string): Promise<PostModel> => {
-    const post = await postRespository.findBySlug(slug).catch(() => undefined);
+    const post = await postRespository
+      .findBySlugPublished(slug)
+      .catch(() => undefined);
     if (!post) notFound();
     return post;
   },
