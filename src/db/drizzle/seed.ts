@@ -12,10 +12,10 @@ async function insertDate() {
     console.log(`error: ${e}`);
   }
 }
+insertDate();
 
 async function findAll() {
   const posts = await drizzleDb.select().from(postsTable);
 
   console.log(posts);
 }
-findAll();
