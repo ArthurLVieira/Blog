@@ -3,11 +3,3 @@ import { JsonPostRepository } from './json-post-repository';
 import { PostRepository } from './post-repository';
 
 export const postRespository: PostRepository = new DrizzlePostRepository();
-
-// (async () => {
-//   // const postsPublished = await postRespository.findByPublished(false);
-//   // console.log(postsPublished);
-
-//   const findAll = await postRespository.findAll();
-//   console.log(findAll);
-// })();

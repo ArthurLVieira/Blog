@@ -1,9 +1,9 @@
 import { postRespository } from '@/repositories/post';
 import Post from '../Post';
-import { findAllPostPublic } from '@/lib/post/queries/public';
+import { findAllPublicPostCached } from '@/lib/post/queries/public';
 
 export async function PostList() {
-  const posts = await findAllPostPublic();
+  const posts = await findAllPublicPostCached();
 
   return (
     <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
