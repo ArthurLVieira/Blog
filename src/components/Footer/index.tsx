@@ -1,6 +1,9 @@
+import { cacheTag } from 'next/cache';
 import Link from '../MenuLink';
 
-export default function Footer() {
+export default async function Footer() {
+  'use cache';
+  cacheTag('footer');
   return (
     <footer className='mt-20 py-6'>
       <p className='text-center'>

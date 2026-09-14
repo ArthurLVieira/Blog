@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import React from 'react';
+import Container from '@/components/Container';
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +18,9 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='pt-BR' className='dark'>
-      <body>{children}</body>
+      <body>
+        <Container>{children}</Container>
+      </body>
     </html>
   );
 }

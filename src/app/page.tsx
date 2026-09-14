@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 
 export default async function HomePage() {
   return (
-    <Container>
+    <>
       <PostFeatured
         postContentHeading={{ as: 'h1' }}
         postLink='#'
@@ -16,6 +16,6 @@ export default async function HomePage() {
       <Suspense fallback={<SpinLoader />}>
         <PostList />
       </Suspense>
-    </Container>
+    </>
   );
 }
