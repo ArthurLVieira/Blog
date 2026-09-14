@@ -1,4 +1,4 @@
-import { findPostBySlugCached } from '@/lib/post/quries';
+import { findPostBySlugPublic } from '@/lib/post/queries/public';
 import Image from 'next/image';
 import Heading from '../Header';
 import PostDate from '../PostDate';
@@ -10,7 +10,7 @@ interface SinglePageProps {
 }
 
 const SinglePage: React.FC<SinglePageProps> = async ({ slug }) => {
-  const post = await findPostBySlugCached(slug);
+  const post = await findPostBySlugPublic(slug);
   return (
     <article className='mb-16'>
       <header className='group flex-col gap-4 mb-4'>

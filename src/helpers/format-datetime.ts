@@ -12,3 +12,7 @@ export function formatRelativeDate(rawDate: string): string {
 
   return formatDistanceToNow(date, { locale: ptBR, addSuffix: true });
 }
+
+export function formatHour(timestamp: number): string {
+  return format(timestamp, 'HH:mm:ss', { locale: ptBR });
+}
