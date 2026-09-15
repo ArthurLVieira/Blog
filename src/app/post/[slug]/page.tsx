@@ -4,6 +4,8 @@ import { Metadata } from 'next';
 import SinglePage from '@/components/SinglePage';
 import SpinLoader from '@/components/SpinLoader';
 
+export const instant = false;
+
 interface PostSlugPageProps {
   params: Promise<{ slug: string }>;
 }

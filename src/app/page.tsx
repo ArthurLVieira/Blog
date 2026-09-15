@@ -10,7 +10,12 @@ export default async function HomePage() {
       <PostFeatured
         postContentHeading={{ as: 'h1' }}
         postLink='#'
-        postModel={{ coverImageUrl: '', createdAt: '', excerpt: '', title: '' }}
+        postModel={{
+          coverImageUrl: '',
+          createdAt: '',
+          excerpt: '',
+          title: '',
+        }}
         key={''}
       />
       <Suspense fallback={<SpinLoader />}>

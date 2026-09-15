@@ -5,7 +5,6 @@ import AsyncDelay from '@/helpers/async-delay';
 
 export class DrizzlePostRepository implements PostRepository {
   async findAll(): Promise<PostModel[]> {
-    await AsyncDelay(SIMULATE_WAIT_IN_MS);
     const posts = await drizzleDb.query.posts.findMany({
       orderBy: (posts, { desc }) => desc(posts.createdAt),
     });
