@@ -1,7 +1,7 @@
 import { findAllPostAdmin } from '@/lib/post/queries/admin';
 import Link from '../MenuLink';
 import clsx from 'clsx';
-import { Trash2Icon } from 'lucide-react';
+import DeletePostButton from '../admin/DeletePostButton';
 import Button from '../Button';
 
 export default async function PostslistAmin() {
@@ -28,22 +28,48 @@ export default async function PostslistAmin() {
             <Link className='hover:scale-102' href={`/admin/post/${post.id}`}>
               {post.title}
             </Link>
-            <Button
-              postModel={{ id: post.id }}
-              className={clsx(
-                'cursor-pointer',
-                'hover:scale-120',
-                '[&_svg]:w-4 [&_svg]:h-4',
-                'transition',
-              )}
-              aria-label={`Apagar post: ${post.title}`}
-              title={`Apagar`}
-            >
-              <Trash2Icon />
-            </Button>
+            <DeletePostButton id={post.id} title={post.title} />
           </div>
         );
       })}
+
+      <div
+        className={clsx(
+          'fixed',
+          'z-50',
+          'inset-0',
+          'bg-black/10',
+          'backdrop-blur-xs',
+          'flex',
+          'items-center',
+          'justify-center',
+        )}
+      >
+        <div
+          className={clsx(
+            'bg-slate-100',
+            'p-6',
+            'rounded-lg',
+            'max-w-2xl',
+            'mx-6',
+            'flex',
+            'flex-col',
+            'gap-2',
+          )}
+        >
+          <h3>Título do dialog</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
+            facere, sequi nulla quas ex voluptates libero molestiae magnam
+            suscipit, fuga quos veritatis officia aut beatae eligendi
+            cupiditate? Libero, alias corrupti.
+          </p>
+          <div className='flex items-center justify-around mt-3'>
+            <Button className='bg-red-400 top'>cancelar</Button>
+            <Button className='bg-green-400 rounded-2xl w-20'>ok</Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
