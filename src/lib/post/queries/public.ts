@@ -7,8 +7,7 @@ import { cache } from 'react';
 export const findPublicPostBySlugCached = cache(
   async (slug: string): Promise<PostModel> => {
     'use cache';
-    cacheTag('post', slug);
-    cacheLife('seconds');
+    cacheTag(`post/${slug}`);
     const post = await postRespository
       .findBySlugPublished(slug)
       .catch(() => undefined);
@@ -19,6 +18,7 @@ export const findPublicPostBySlugCached = cache(
 
 export const findAllPublicPostCached = cache(async (): Promise<PostModel[]> => {
   'use cache';
+  cacheTag(`posts`);
   const post = await postRespository.findAll().catch(() => undefined);
   if (!post) notFound();
   return post;

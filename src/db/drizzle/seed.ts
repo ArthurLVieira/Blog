@@ -12,9 +12,19 @@ async function insertDate() {
     console.log(`error: ${e}`);
   }
 }
-insertDate();
+// insertDate();
+
+async function deleteDate() {
+  try {
+    await drizzleDb.delete(postsTable);
+  } catch (e) {
+    console.log(`error: ${e}`);
+  }
+}
+// deleteDate();
 
 async function findAll() {
   const posts = await drizzleDb.select().from(postsTable);
   console.log(posts);
 }
+findAll();

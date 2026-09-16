@@ -5,7 +5,6 @@ import { useState } from 'react';
 export default function ExemploPage() {
   const [open, setOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const [errorOpen, setErrorOpem] = useState(false);
 
   return (
     <>

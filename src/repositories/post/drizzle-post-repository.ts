@@ -2,6 +2,8 @@ import { PostModel } from '@/models/post/post-model';
 import { PostRepository } from './post-repository';
 import { drizzleDb } from '@/db/drizzle';
 import AsyncDelay from '@/helpers/async-delay';
+import { postsTable } from '@/db/drizzle/schemas';
+import { eq } from 'drizzle-orm';
 
 export class DrizzlePostRepository implements PostRepository {
   async findAll(): Promise<PostModel[]> {
@@ -50,5 +52,10 @@ export class DrizzlePostRepository implements PostRepository {
     if (!post) throw new Error('post não encontrado');
 
     return post;
+  }
+
+  async deleteById(id: string): Promise<void> {
+    await this.findById(id);
+    await drizzleDb.delete(postsTable).where(eq(postsTable.id, id));
   }
 }

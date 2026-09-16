@@ -6,4 +6,5 @@ export interface PostRepository {
   findByPublished(publised: boolean): Promise<PostModel[]>;
   findBySlugPublished(slug: string): Promise<PostModel>;
   findBySlug(slug: string): Promise<PostModel>;
+  deleteById(id: string): Promise<void>;
 }

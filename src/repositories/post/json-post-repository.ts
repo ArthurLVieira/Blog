@@ -22,8 +22,6 @@ export class JsonPostRepository implements PostRepository {
   };
 
   findAll = async (): Promise<PostModel[]> => {
-    await AsyncDelay(SIMULATE_WAIT_IN_MS, true);
-
     const posts = await this.readFromDisk();
     return posts;
   };
