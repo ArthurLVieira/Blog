@@ -5,15 +5,16 @@ import { useState } from 'react';
 export default function ExemploPage() {
   const [open, setOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [errorOpen, setErrorOpem] = useState(false);
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>Abrir aviso</button>
+      <button onClick={() => setConfirmOpen(true)}>Abrir aviso</button>
 
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
-        variant='warning'
+        variant='info'
         title='Excluir post?'
         description='Esta ação é permanente e não poderá ser desfeita.'
         onConfirm={() => setOpen(false)}
@@ -23,7 +24,7 @@ export default function ExemploPage() {
       <Dialog
         open={confirmOpen}
         onClose={() => setConfirmOpen(false)}
-        variant='success'
+        variant='info'
         title='Post publicado!'
         description='Seu artigo já está disponível no blog.'
         hideCancel
