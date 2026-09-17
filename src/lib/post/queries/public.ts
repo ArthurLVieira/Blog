@@ -19,9 +19,11 @@ export const findPublicPostBySlugCached = cache(
 export const findAllPublicPostCached = cache(async (): Promise<PostModel[]> => {
   'use cache';
   cacheTag(`posts`);
-  const post = await postRespository.findAll().catch(() => undefined);
-  if (!post) notFound();
-  return post;
+  const posts = await postRespository
+    .findByPublished(true)
+    .catch(() => undefined);
+  if (!posts) notFound();
+  return posts;
 });
 
 export const findPublicLastCreated = async (): Promise<PostModel> => {
@@ -31,10 +33,4 @@ export const findPublicLastCreated = async (): Promise<PostModel> => {
     .catch(() => undefined);
   if (!post) notFound();
   return post;
-};
-
-export const findAllExceptLatest = async (): Promise<PostModel[]> => {
-  const posts = await postRespository.findAllExceptLatest();
-  if (!posts) notFound();
-  return posts;
 };

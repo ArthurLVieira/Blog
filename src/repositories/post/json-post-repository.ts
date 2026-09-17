@@ -12,7 +12,7 @@ const JSON_POSTS_FILE_PATH = resolve(
   'posts.json',
 );
 
-export class JsonPostRepository implements PostRepository {
+export class JsonPostRepository {
   private readFromDisk = async (): Promise<PostModel[]> => {
     const jsonContent = await readFile(JSON_POSTS_FILE_PATH, 'utf-8');
     const parsedJson = JSON.parse(jsonContent);

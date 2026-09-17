@@ -1,5 +1,5 @@
 import { cacheTag } from 'next/cache';
-import Link from '../MenuLink';
+import Link from '../Link';
 
 export default async function Footer() {
   'use cache';

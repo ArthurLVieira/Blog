@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import Link from '../MenuLink';
+import Link from '../Link';
 import React from 'react';
 
 interface HeadingProps {

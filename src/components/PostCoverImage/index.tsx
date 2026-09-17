@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '../MenuLink';
+import Link from '../Link';
 import Image from 'next/image';
 import clsx from 'clsx';
 

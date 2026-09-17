@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 import PostCoverImage from '../PostCoverImage';
 import PostContet from '../PostContent';
-import { findPublicLastCreated } from '@/lib/post/queries/public';
+import { findAllPublicPostCached } from '@/lib/post/queries/public';
 
 const PostFeatured: React.FC = async () => {
-  const post = await findPublicLastCreated();
+  const posts = await findAllPublicPostCached();
+  const post = posts[0];
   const { coverImageUrl, createdAt, excerpt, title } = post;
   const postLink = `/post/${post.slug}`;
   return (

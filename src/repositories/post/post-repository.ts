@@ -8,5 +8,4 @@ export interface PostRepository {
   findBySlug(slug: string): Promise<PostModel>;
   deleteById(id: string): Promise<void>;
   findByLastCreatedAt(): Promise<PostModel>;
-  findAllExceptLatest(): Promise<PostModel[]>;
 }

@@ -10,9 +10,9 @@ export class DrizzlePostRepository implements PostRepository {
       orderBy: (posts, { desc }) => desc(posts.createdAt),
     });
 
-    return posts.map(post => ({
-      ...post,
-    }));
+    if (!posts) throw new Error('Post não encontrado.');
+
+    return posts;
   }
 
   async findById(id: string): Promise<PostModel> {
@@ -72,16 +72,5 @@ export class DrizzlePostRepository implements PostRepository {
     if (!post) throw new Error('post não encontrado');
 
     return post;
-  }
-
-  async findAllExceptLatest(): Promise<PostModel[]> {
-    const posts = await drizzleDb.query.posts.findMany({
-      where: (posts, { eq }) => eq(posts.published, true),
-      orderBy: (posts, { desc }) => desc(posts.createdAt),
-      limit: -1,
-      offset: 1,
-    });
-    if (!posts) throw new Error('post não encontrado');
-    return posts;
   }
 }

@@ -12,7 +12,7 @@ async function insertDate() {
     console.log(`error: ${e}`);
   }
 }
-// insertDate();
+insertDate();
 
 async function deleteDate() {
   try {
@@ -28,11 +28,3 @@ async function findAll() {
   console.log(posts);
 }
 // findAll();
-
-const query = drizzleDb.query.posts.findMany({
-  orderBy: (posts, { desc }) => desc(posts.createdAt),
-  limit: -1,
-  offset: 1,
-});
-
-console.log(query.toSQL());
