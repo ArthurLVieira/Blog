@@ -1,8 +1,6 @@
 'use server';
 
-import AsyncDelay from '@/helpers/async-delay';
 import { postRespository } from '@/repositories/post';
-import { error } from 'console';
 import { revalidateTag } from 'next/cache';
 
 export async function deletePostAction(id: string) {
@@ -27,7 +25,8 @@ export async function deletePostAction(id: string) {
   }
 
   //TODO: reavalidateTag ou revalidatePath
-  revalidateTag(`post-${post.slug}`);
+  revalidateTag(`post-${id}`, { expire: 0 });
+  revalidateTag('posts', { expire: 0 });
 
   await postRespository.deleteById(id);
 

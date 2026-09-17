@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import Post from '../Post';
-import { findAllPublicPostCached } from '@/lib/post/queries/public';
+import { findAllExceptLatest } from '@/lib/post/queries/public';
 import SpinLoader from '../SpinLoader';
 
 export async function PostList() {
-  const posts = await findAllPublicPostCached();
+  const posts = await findAllExceptLatest();
 
   return (
     <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>

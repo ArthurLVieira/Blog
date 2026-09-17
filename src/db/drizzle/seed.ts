@@ -27,4 +27,12 @@ async function findAll() {
   const posts = await drizzleDb.select().from(postsTable);
   console.log(posts);
 }
-findAll();
+// findAll();
+
+const query = drizzleDb.query.posts.findMany({
+  orderBy: (posts, { desc }) => desc(posts.createdAt),
+  limit: -1,
+  offset: 1,
+});
+
+console.log(query.toSQL());

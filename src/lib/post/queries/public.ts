@@ -1,6 +1,6 @@
 import { PostModel } from '@/models/post/post-model';
 import { postRespository } from '@/repositories/post';
-import { cacheLife, cacheTag } from 'next/cache';
+import { cacheTag } from 'next/cache';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
@@ -23,3 +23,18 @@ export const findAllPublicPostCached = cache(async (): Promise<PostModel[]> => {
   if (!post) notFound();
   return post;
 });
+
+export const findPublicLastCreated = async (): Promise<PostModel> => {
+  'use cache';
+  const post = await postRespository
+    .findByLastCreatedAt()
+    .catch(() => undefined);
+  if (!post) notFound();
+  return post;
+};
+
+export const findAllExceptLatest = async (): Promise<PostModel[]> => {
+  const posts = await postRespository.findAllExceptLatest();
+  if (!posts) notFound();
+  return posts;
+};

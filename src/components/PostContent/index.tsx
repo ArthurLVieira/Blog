@@ -2,7 +2,6 @@ import { PostModel } from '@/models/post/post-model';
 import clsx from 'clsx';
 import React from 'react';
 import Heading from '../Header';
-import { formatDateTime, formatRelativeDate } from '@/helpers/format-datetime';
 import PostDate from '../PostDate';
 
 interface PostContetProps {

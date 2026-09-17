@@ -27,7 +27,7 @@ const DeletePostButton: React.FC<DeletePostButtonProps> = ({
 
   async function handleConfirmDialog() {
     startTrasition(async () => {
-      const result = await deletePostAction('1234');
+      const result = await deletePostAction(id);
       setResult(() => {
         return { error: result?.error, message: result?.message };
       });

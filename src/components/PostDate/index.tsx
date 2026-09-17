@@ -7,8 +7,9 @@ interface PostDateProps {
   postModel: Pick<PostModel, 'createdAt'>;
 }
 
-const PostDate: React.FC<PostDateProps> = ({ postModel }) => {
+const PostDate: React.FC<PostDateProps> = async ({ postModel }) => {
   const { createdAt } = postModel;
+  const relative = await formatRelativeDate(createdAt);
 
   return (
     <time
@@ -18,7 +19,7 @@ const PostDate: React.FC<PostDateProps> = ({ postModel }) => {
         'text-sm/tight',
       )}
       dateTime={createdAt}
-      title={formatRelativeDate(createdAt)}
+      title={relative}
     >
       {formatDateTime(createdAt)}
     </time>

@@ -2,7 +2,6 @@ import { PostModel } from '@/models/post/post-model';
 import { PostRepository } from './post-repository';
 import { resolve } from 'path';
 import { readFile } from 'fs/promises';
-import AsyncDelay from '@/helpers/async-delay';
 
 const ROOT_DIR = process.cwd();
 const JSON_POSTS_FILE_PATH = resolve(
@@ -62,4 +61,6 @@ export class JsonPostRepository implements PostRepository {
 
     return post[0];
   };
+
+  async deleteById(id: string): Promise<void> {}
 }

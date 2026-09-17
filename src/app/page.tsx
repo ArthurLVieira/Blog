@@ -6,21 +6,9 @@ import { Suspense } from 'react';
 
 export default async function HomePage() {
   return (
-    <>
-      <PostFeatured
-        postContentHeading={{ as: 'h1' }}
-        postLink='#'
-        postModel={{
-          coverImageUrl: '',
-          createdAt: '',
-          excerpt: '',
-          title: '',
-        }}
-        key={''}
-      />
-      <Suspense fallback={<SpinLoader />}>
-        <PostList />
-      </Suspense>
-    </>
+    <Suspense fallback={<SpinLoader />}>
+      <PostFeatured />
+      <PostList />
+    </Suspense>
   );
 }
