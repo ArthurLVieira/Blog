@@ -3,7 +3,13 @@
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import { HouseIcon, FileTextIcon, UsersIcon, SettingsIcon } from 'lucide-react';
+import {
+  HouseIcon,
+  FileTextIcon,
+  UsersIcon,
+  SettingsIcon,
+  PlusIcon,
+} from 'lucide-react';
 import MenuLink from '../MenuLink';
 
 type MenuItem = {
@@ -13,9 +19,14 @@ type MenuItem = {
 };
 
 const MENU_ITEMS: MenuItem[] = [
-  { href: '/admin', label: 'Início', icon: <HouseIcon size={20} /> },
+  { href: '/', label: 'Início', icon: <HouseIcon size={20} /> },
   { href: '/admin/post', label: 'Posts', icon: <FileTextIcon size={20} /> },
   { href: '/admin/users', label: 'Usuários', icon: <UsersIcon size={20} /> },
+  {
+    href: '/admin/post/new',
+    label: 'Criar post',
+    icon: <PlusIcon size={20} />,
+  },
   {
     href: '/admin/settings',
     label: 'Config',
