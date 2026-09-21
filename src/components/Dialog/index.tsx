@@ -6,7 +6,7 @@ import Button from '../Button';
 
 type DialogVariant = 'info' | 'warning' | 'error' | 'success' | 'dialog';
 
-type DialogProps = {
+export type DialogProps = {
   open: boolean;
   onClose: () => void;
   onConfirm?: () => void;
@@ -18,6 +18,20 @@ type DialogProps = {
   cancelLabel?: string;
   hideCancel?: boolean;
   loading?: boolean;
+};
+
+export const DialogDefalt: DialogProps = {
+  open: false,
+  onClose: () => {},
+  onConfirm: () => {},
+  title: '',
+  description: '',
+  children: '',
+  variant: 'dialog',
+  confirmLabel: '',
+  cancelLabel: '',
+  hideCancel: false,
+  loading: false,
 };
 
 const variantConfig: Record<

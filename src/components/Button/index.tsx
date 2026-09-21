@@ -10,8 +10,17 @@ interface ButtonProps extends React.DetailedHTMLProps<
   id?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, id, ...props }) => {
-  return <button {...props}>{children}</button>;
+const Button: React.FC<ButtonProps> = ({
+  children,
+  id,
+  type = 'button',
+  ...props
+}) => {
+  return (
+    <button {...props} type={type}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;
