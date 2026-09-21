@@ -7,7 +7,7 @@ export default async function PostslistAmin() {
   const posts = await findAllPostAdmin();
 
   return (
-    <div className='mb-16'>
+    <div className={clsx('p-10 rounded-xl bg-white', 'dark:bg-slate-800')}>
       {posts.map(post => {
         return (
           <div

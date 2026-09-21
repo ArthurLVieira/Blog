@@ -20,14 +20,45 @@ const InputStyleSize: Record<InputSize, string> = {
 
 const InputTipsStyle: Record<InputTips, string> = {
   required: clsx(
-    'bg-blue-100 ring-blue-400 focus:ring-blue-600 placeholder-slate-400',
-    'read-only:bg-blue-100 read-only:ring-blue-100 read-only:placeholder-slate-400',
-    'disabled:bg-blue-100 disabled:ring-blue-100 disabled:placeholder-slate-400',
-    'dark:bg-slate-600 dark:ring-slate-300 dark:focus:ring-white dark:placeholder-slate-300',
+    // light
+    'bg-slate-100 ring-blue-400 focus:ring-blue-600 placeholder-slate-400 text-slate-900',
+    'read-only:bg-slate-200 read-only:ring-blue-200 read-only:focus:ring-blue-300 read-only:placeholder-slate-400',
+    'disabled:bg-slate-200 disabled:ring-blue-200 disabled:placeholder-slate-400',
+    // dark
+    'dark:bg-slate-900 dark:ring-blue-500 dark:focus:ring-blue-400 dark:placeholder-slate-500 dark:text-slate-100',
+    'dark:read-only:bg-slate-800 dark:read-only:ring-blue-900 dark:read-only:focus:ring-blue-800 dark:read-only:placeholder-slate-600',
+    'dark:disabled:bg-slate-800 dark:disabled:ring-blue-900 dark:disabled:placeholder-slate-600',
   ),
-  error: '',
-  info: '',
-  default: clsx(),
+  error: clsx(
+    // light
+    'bg-slate-100 ring-red-400 focus:ring-red-600 placeholder-slate-400 text-red-700',
+    'read-only:bg-slate-200 read-only:ring-red-200 read-only:focus:ring-red-300 read-only:placeholder-slate-400 read-only:text-red-400',
+    'disabled:bg-slate-200 disabled:ring-red-200 disabled:placeholder-slate-400 disabled:text-red-400',
+    // dark
+    'dark:bg-slate-900 dark:ring-red-500 dark:focus:ring-red-400 dark:placeholder-slate-500 dark:text-red-300',
+    'dark:read-only:bg-slate-800 dark:read-only:ring-red-900 dark:read-only:focus:ring-red-900 dark:read-only:placeholder-slate-600 dark:read-only:text-red-500',
+    'dark:disabled:bg-slate-800 dark:disabled:ring-red-900 dark:disabled:placeholder-slate-600 dark:disabled:text-red-500',
+  ),
+  info: clsx(
+    // light
+    'bg-slate-100 ring-sky-400 focus:ring-sky-600 placeholder-slate-400 text-slate-900',
+    'read-only:bg-slate-200 read-only:ring-sky-200 read-only:focus:ring-sky-300 read-only:placeholder-slate-400',
+    'disabled:bg-slate-200 disabled:ring-sky-200 disabled:placeholder-slate-400',
+    // dark
+    'dark:bg-slate-900 dark:ring-sky-500 dark:focus:ring-sky-400 dark:placeholder-slate-500 dark:text-slate-100',
+    'dark:read-only:bg-slate-800 dark:read-only:ring-sky-900 dark:read-only:focus:ring-sky-800 dark:read-only:placeholder-slate-600',
+    'dark:disabled:bg-slate-800 dark:disabled:ring-sky-900 dark:disabled:placeholder-slate-600',
+  ),
+  default: clsx(
+    // light
+    'bg-slate-100 ring-slate-300 focus:ring-slate-500 placeholder-slate-400 text-slate-900',
+    'read-only:bg-slate-200 read-only:ring-slate-300 read-only:focus:ring-slate-400 read-only:placeholder-slate-500',
+    'disabled:bg-slate-200 disabled:ring-slate-200 disabled:placeholder-slate-400',
+    // dark
+    'dark:bg-slate-900 dark:ring-slate-700 dark:focus:ring-slate-400 dark:placeholder-slate-500 dark:text-slate-100',
+    'dark:read-only:bg-slate-800 dark:read-only:ring-slate-700 dark:read-only:focus:ring-slate-600 dark:read-only:placeholder-slate-600',
+    'dark:disabled:bg-slate-800 dark:disabled:ring-slate-800 dark:disabled:placeholder-slate-600',
+  ),
 };
 
 type ImputProps = {
@@ -43,7 +74,7 @@ export default function Input({
   inputSize = 'md',
   type = 'text',
   labelText,
-  tip = 'required',
+  tip = 'default',
   ...props
 }: ImputProps) {
   const id = useId();
@@ -56,11 +87,7 @@ export default function Input({
         className={clsx(
           'text-base/tight ring-2 rounded p-2 transition outline-0',
           'focus:placeholder-transparent focus:outline-none disabled:cursor-not-allowed',
-          'bg-slate-200 ring-slate-400 focus:ring-blue-600 placeholder-slate-300',
-          'read-only:bg-slate-200 read-only:ring-slate-200 focus:ring-slate-600 read-only:placeholder-300',
-          'disabled:bg-slate-200 disabled:placeholder-slate-500',
-          'dark:bg-inherit dark:ring-slate-300 dark:focus:ring-white dark:placeholder-slate-300',
-          'dark:read-only:bg-slate-200 dark:read-only:ring-slate-200 dark:focus:read-only:ring-blue-600',
+
           InputTipsStyle[tip],
           InputStyleSize[inputSize],
           props.className,

@@ -2,7 +2,7 @@ import { PostModel } from '@/models/post/post-model';
 import PostContet from '../PostContent';
 import PostCoverImage from '../PostCoverImage';
 import { Key } from 'react';
-import Heading from '../Header';
+import Heading from '../Heading';
 
 interface PostProps {
   postLink: string;

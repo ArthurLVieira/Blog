@@ -1,3 +1,4 @@
+import PageTitle from '@/components/admin/PageTitle';
 import PostslistAmin from '@/components/admin/PostslistAmin';
 import SpinLoader from '@/components/SpinLoader';
 import { Metadata } from 'next';
@@ -9,8 +10,11 @@ export const metadata: Metadata = {
 
 export default async function AdminPostPage() {
   return (
-    <Suspense fallback={<SpinLoader />}>
-      <PostslistAmin />
-    </Suspense>
+    <>
+      <PageTitle title='Post' />
+      <Suspense fallback={<SpinLoader />}>
+        <PostslistAmin />
+      </Suspense>
+    </>
   );
 }

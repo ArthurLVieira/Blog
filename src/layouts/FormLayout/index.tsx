@@ -1,5 +1,5 @@
 import Footer from '@/components/Footer';
-import Heading from '@/components/Header';
+import Heading from '@/components/Heading';
 
 interface FormLayoutProps {
   children: React.ReactNode;

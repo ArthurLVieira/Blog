@@ -1,6 +1,6 @@
 import { findPublicPostBySlugCached } from '@/lib/post/queries/public';
 import Image from 'next/image';
-import Heading from '../Header';
+import Heading from '../Heading';
 import PostDate from '../PostDate';
 import clsx from 'clsx';
 import SafeMarkdown from '../SafeMarkdown';
