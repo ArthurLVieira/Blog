@@ -1,7 +1,7 @@
 'use client';
 
-import { deleteImageAction } from '@/actions/delete/delete-image-action';
-import { uploadImageAction } from '@/actions/upload/upload-image-action';
+import { deleteImageAction } from '@/actions/image/delete-image-action';
+import { uploadImageAction } from '@/actions/image/upload-image-action';
 import ButtonVariant from '@/components/ButtonVariant';
 import Dialog, { DialogDefalt, DialogProps } from '@/components/Dialog';
 import { useSessionStorage } from '@/hooks/useSessionStorage';
@@ -42,7 +42,7 @@ export function ImageUploader() {
       setOpenDialog(prev => ({
         ...prev,
         open: true,
-        onClose: () => {
+        onConfirm: () => {
           setOpenDialog(DialogDefalt);
         },
         title: 'Erro upload',
