@@ -1,12 +1,12 @@
 'use client';
 
 import clsx from 'clsx';
-import React, { useId } from 'react';
+import { ComponentProps, useId } from 'react';
 
 type ImputProps = {
   labelText?: string;
   className?: string;
-};
+} & ComponentProps<'input'>;
 
 export default function CheckBox({ labelText, ...props }: ImputProps) {
   const id = useId();
