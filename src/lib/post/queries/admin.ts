@@ -26,3 +26,18 @@ export const findAllPostAdmin = async (): Promise<PostModel[]> => {
   if (!posts) notFound();
   return posts;
 };
+
+export const createPostAdmin = async (post: PostModel): Promise<PostModel> => {
+  return await postRespository.insert(post);
+};
+
+export const deletePostByIdAdmin = async (id: string): Promise<PostModel> => {
+  return await postRespository.delete(id);
+};
+
+export const updatePostByIdAdmin = async (
+  id: string,
+  newPostData: Omit<PostModel, 'id' | 'slug' | 'createdAt' | 'updatedAt'>,
+) => {
+  return await postRespository.update(id, newPostData);
+};

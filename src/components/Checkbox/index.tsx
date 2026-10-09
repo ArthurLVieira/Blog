@@ -11,22 +11,20 @@ type ImputProps = {
 export default function CheckBox({ labelText, ...props }: ImputProps) {
   const id = useId();
   return (
-    <form action=''>
-      <div className={clsx('flex flex-row gap-3 items-center')}>
-        <input
-          {...props}
-          type='checkbox'
-          className={clsx(
-            'w-4 h-4 outline-none focus:ring-2 focus:ring-blue-500',
-            props.className,
-          )}
-        />
-        {labelText && (
-          <label className='' htmlFor={id}>
-            {labelText}
-          </label>
+    <div className={clsx('flex flex-row gap-3 items-center')}>
+      <input
+        {...props}
+        type='checkbox'
+        className={clsx(
+          'w-4 h-4 outline-none focus:ring-2 focus:ring-blue-500',
+          props.className,
         )}
-      </div>
-    </form>
+      />
+      {labelText && (
+        <label className='' htmlFor={id}>
+          {labelText}
+        </label>
+      )}
+    </div>
   );
 }

@@ -73,4 +73,69 @@ export class DrizzlePostRepository implements PostRepository {
 
     return post;
   }
+
+  async insert(post: PostModel): Promise<PostModel> {
+    const postExists = await drizzleDb.query.posts.findFirst({
+      where: (posts, { or, eq }) =>
+        or(eq(posts.id, post.id), eq(posts.slug, post.slug)),
+      columns: { id: true },
+    });
+
+    if (!!postExists) {
+      throw new Error('Post com ID ou Slug já existe na base da dados');
+    }
+
+    await drizzleDb.insert(postsTable).values(post);
+
+    return post;
+  }
+
+  async delete(id: string): Promise<PostModel> {
+    const postExists = await drizzleDb.query.posts.findFirst({
+      where: (currentPost, { eq }) => eq(currentPost.id, id),
+    });
+
+    if (!postExists) {
+      throw new Error('Post não existe !');
+    }
+
+    await drizzleDb.delete(postsTable).where(eq(postsTable.id, id));
+
+    return postExists;
+  }
+
+  async update(
+    id: string,
+    newPostData: Omit<PostModel, 'id' | 'slug' | 'createdAt' | 'updatedAt'>,
+  ): Promise<PostModel> {
+    const oldPost = await drizzleDb.query.posts.findFirst({
+      where: (currentPost, { eq }) => eq(currentPost.id, id),
+    });
+
+    if (!oldPost) {
+      throw new Error('Post não existe !');
+    }
+
+    const now = new Date().toISOString();
+
+    const postData = {
+      author: newPostData.author,
+      content: newPostData.content,
+      coverImageUrl: newPostData.coverImageUrl,
+      excerpt: newPostData.excerpt,
+      published: newPostData.published,
+      title: newPostData.title,
+      updatedAt: now,
+    };
+
+    await drizzleDb
+      .update(postsTable)
+      .set(postData)
+      .where(eq(postsTable.id, id));
+
+    return {
+      ...oldPost,
+      ...postData,
+    };
+  }
 }

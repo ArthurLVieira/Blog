@@ -11,7 +11,6 @@ import { ImageUploader } from '../ImageUploader';
 import { makePartialPublicPost, PublicPost } from '@/dto/dto';
 import createPostAction from '@/actions/post/create-post-action';
 import Dialog, { DialogDefalt, DialogProps } from '@/components/Dialog';
-import { error } from 'node:console';
 
 type ManagePostFormProps = {
   post?: PublicPost;
@@ -33,26 +32,26 @@ export default function ManagePostForm({ post }: ManagePostFormProps) {
   const [contentValue, setContentValue] = useState(post?.content || '');
 
   useEffect(() => {
-    if (state.errors.length > 0) {
-      state.errors.forEach(error => {
-        setOpenDialog(prev => ({
-          ...prev,
-          description: prev.description + error,
-        }));
-      });
+    if (state.errors.length === 0) return;
 
+    state.errors.forEach(error => {
       setOpenDialog(prev => ({
         ...prev,
-        open: true,
-        onConfirm: () => {
-          setOpenDialog(DialogDefalt);
-        },
-        title: 'Erro',
-        variant: 'error',
-        confirmLabel: 'Ok',
-        hideCancel: true,
+        description: [prev.description, error].filter(Boolean).join('\n'),
       }));
-    }
+    });
+
+    setOpenDialog(prev => ({
+      ...prev,
+      open: true,
+      onConfirm: () => {
+        setOpenDialog(DialogDefalt);
+      },
+      title: 'Erro',
+      variant: 'error',
+      confirmLabel: 'Ok',
+      hideCancel: true,
+    }));
   }, [state.errors]);
 
   return (

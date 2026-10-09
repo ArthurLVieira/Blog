@@ -19,7 +19,7 @@ const Post: React.FC<PostProps> = ({
   postLink,
   postModel,
   postContentHeading,
-  key,
+  key = '',
 }) => {
   const { coverImageUrl, title, createdAt, excerpt } = postModel;
   return (

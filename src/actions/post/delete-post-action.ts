@@ -1,12 +1,10 @@
 'use server';
 
-import { postRespository } from '@/repositories/post';
+import { deletePostByIdAdmin } from '@/lib/post/queries/admin';
 import { revalidateTag } from 'next/cache';
 
 export async function deletePostAction(id: string) {
   // TODO: checar login de usuário
-
-  //TODO: remover linha abaixo
 
   if (!id || typeof id !== 'string') {
     return {
@@ -15,20 +13,26 @@ export async function deletePostAction(id: string) {
     };
   }
 
-  const post = await postRespository.findById(id).catch(() => undefined);
+  let post;
+  try {
+    post = await deletePostByIdAdmin(id);
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      return {
+        error: 'Erro',
+        message: [e.message],
+      };
+    }
 
-  if (!post) {
     return {
-      error: 'Post não existe.',
-      message: `Post não encontrado para id: ${id}`,
+      error: 'Erro',
+      message: 'Erro desconhecido !',
     };
   }
 
-  //TODO: reavalidateTag ou revalidatePath
   revalidateTag(`post-${id}`, { expire: 0 });
+  revalidateTag(`post-${post.slug}`, { expire: 0 });
   revalidateTag('posts', { expire: 0 });
-
-  await postRespository.deleteById(id);
 
   return {
     error: '',
